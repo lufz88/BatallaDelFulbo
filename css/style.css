@@ -25,11 +25,11 @@ body {
     border-radius: 20px;
     background-color: #44749d;
     padding: 8px 0;
+    margin: 16px 0 0 0;
 }
 
 .subtitle {
     font-size: 24px;
-    
 }
 
 .contenedor-jugadores {
@@ -82,7 +82,7 @@ button {
     border: 1px solid ;
     background-color: #44749d;
     padding: 8px;
-    margin-top: 16px;
+    margin-top: 8px;
     border-radius: 20px;
     cursor: pointer;
 }
@@ -99,7 +99,7 @@ button {
     justify-items: center;
     grid-template-columns: 1fr 1fr;
     width: 500px;
-    margin-top: 24px;
+    margin-top: 0;
 }
 
 #mensajes p {
@@ -121,7 +121,7 @@ button {
 .contenedor-botones {
     display: flex;
     align-items: center;
-    margin: 28px 0;
+    margin: 16px 0;
 }
 
 .boton-ataque {
@@ -134,7 +134,7 @@ button {
     justify-items: center;
     grid-template-columns: 1fr 1fr;
     width: 500px;
-    margin-top: 24px;
+    margin-top: 16px;
 }
 
 .tarjeta-de-estado {
@@ -229,9 +229,19 @@ button {
     }
 }
 @media (max-width: 658px) {
-    .contenedor-botones {
-        flex-direction: column;
+    .subtitle {
+        font-size: 20px;
+        margin: 12px 0 0 0;
     }
+
+    .contenedor-botones {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 0;
+    }
+    .contenedor-ataques {
+        margin-bottom: 0;
+    } 
 
     .boton-ataque {
         margin-bottom: 12px;
@@ -255,9 +265,14 @@ button {
     }
     .contenedor-estado {
         width: 400px;
+        margin-top: 4px;
     }
     .tarjeta-de-estado {
         width: 150px;
+    }
+
+    #ataques-del-enemigo, #ataques-del-jugador {
+        font-size: 14px;
     }
 }
 
