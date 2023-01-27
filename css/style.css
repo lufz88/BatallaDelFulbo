@@ -246,11 +246,16 @@ button {
         height: 80px;
         width: 80px;
     }
+    #mensajes {
+        width: 400px;
+    }
 
     #mensajes p {
         width: 150px;
     }
-
+    .contenedor-estado {
+        width: 400px;
+    }
     .tarjeta-de-estado {
         width: 150px;
     }
