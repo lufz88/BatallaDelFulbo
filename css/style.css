@@ -246,6 +246,14 @@ button {
         height: 80px;
         width: 80px;
     }
+
+    #mensajes p {
+        width: 150px;
+    }
+
+    .tarjeta-de-estado {
+        width: 150px;
+    }
 }
 
 @media (max-width: 422px) {
