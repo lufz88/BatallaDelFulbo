@@ -258,10 +258,14 @@ function crearMensajeFinal(resultadoFinal1, resultadoFinal2) {
 
 function revisarVidas() {
     if (vidasJugador <= 0 && vidasEnemigo <= 0 ){
+        spanVidasEnemigo.innerHTML = 0;
+        spanVidasJugador.innerHTML = 0;
         crearMensajeFinal("Ambos murieron, empate", "Ambos murieron, empate");
     } else if (vidasJugador <= 0) {
+        spanVidasJugador.innerHTML = 0;
         crearMensajeFinal("Lo siento, Perdiste", "¡Felicitaciones! ¡Ganaste!");
     } else if (vidasEnemigo <= 0) {
+        spanVidasEnemigo.innerHTML = 0;
         crearMensajeFinal("¡Felicitaciones! ¡Ganaste!", "Lo siento, Perdiste");
     }
 }

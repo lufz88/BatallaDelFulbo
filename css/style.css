@@ -96,19 +96,19 @@ button {
 
 #mensajes {
     display: grid;
-    justify-items: center;
     grid-template-columns: 1fr 1fr;
     width: 500px;
     margin-top: 0;
+    padding-left: 10px ;
 }
 
 #mensajes p {
     text-align: center;
-    padding-top: 25px;
     width: 180px;
     height: 80px;
     border: 1px solid #bdb8ad;
     border-radius: 20px;
+    padding-top: 8px;
 }
 
 .contenedor-ataques {
@@ -261,7 +261,7 @@ button {
     }
 
     #mensajes p {
-        width: 150px;
+        width: 180px;
     }
     .contenedor-estado {
         width: 400px;
