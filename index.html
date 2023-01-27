@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡La Batalla del Fulbo!</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section id="seleccionar-mascota">
+        <h1 class="title">La batalla del Fulbo! ⚽</h1>
+
+        <h2 class="subtitle">Elige tu Jugador</h2>
+        
+        <div id="contenedor-tarjeta" class="contenedor-jugadores">
+            
+        </div>
+
+        <button class="shadow-inset-center" id="boton-mascota">Seleccionar</button>
+    </section>
+    <section id="seleccionar-ataque">
+        <h1 class="title">La batalla del Fulbo! ⚽</h1>
+
+        <div class="contenedor-ataques">
+            <h2 class="subtitle">Elige tu ataque</h2>
+            <div class="contenedor-botones" id="contenedor-botones">
+            
+            </div>
+        </div>
+        
+        <section id="mensajes">
+            <p id="ataque-actual-jugador">¡suerte!</p>
+            <p id="ataque-actual-enemigo"></p>
+        </section>    
+        
+        
+        <section id="reiniciar">
+            <button class="shadow-inset-center" id="boton-reiniciar">Reiniciar</button>
+        </section>
+        
+        <div class="contenedor-estado">
+            
+            <div class= "tarjeta-de-estado" id="jugador">
+                <p id="vidas-jugador">100</p>
+                <p id="mascota-jugador"></span>  
+                <p id="ataques-del-jugador"></p>
+            </div>
+            
+            <div class= "tarjeta-de-estado" id="enemigo">
+                <p id="vidas-enemigo">100</span>
+                <p id="mascota-enemigo"></span>
+                <p id="ataques-del-enemigo"></p> 
+            </div>
+        </div>
+    </section>  
+    <script src="./js/codigo.js"></script>
+</body>
+</html>
