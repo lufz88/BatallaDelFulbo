@@ -87,6 +87,23 @@ button {
     cursor: pointer;
 }
 
+/* Pantalla mapa */
+
+#ver-mapa {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#mapa {
+    border: 2px solid whitesmoke;
+}
+
+.movimiento {
+    width: 80px !important;
+    height: 40px !important;
+}
+
 /*Pantalla de combate*/
 #seleccionar-ataque {
     display: flex;
