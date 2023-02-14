@@ -62,12 +62,12 @@ class Ataque {
     }
 }
 
-let Iaia = new Personaje("Iaia","./img/la-iaia.jpg", 3);
-let Seve = new Personaje("Seve","./img/seve.jpg", 3);
-let Chino = new Personaje("Chino","./img/el-chino.JPG", 3);
-let Ivan = new Personaje("Ivan","./img/ivan.jpg", 3);
-let Martin = new Personaje("Martin","./img/martin.jpg", 3);
-let Gonzalez = new Personaje("Gonzalez","./img/gonzalez.JPG", 3);
+let Iaia = new Personaje("Iaia","./img/la-iaia.png", 3);
+let Seve = new Personaje("Seve","./img/seve.png", 3);
+let Chino = new Personaje("Chino","./img/el-chino.png", 3);
+let Ivan = new Personaje("Ivan","./img/ivan.png", 3);
+let Martin = new Personaje("Martin","./img/martin.png", 3);
+let Gonzalez = new Personaje("Gonzalez","./img/gonzalez.png", 3);
 
 personajes.push(Iaia, Seve, Chino, Ivan, Martin, Gonzalez);
 
