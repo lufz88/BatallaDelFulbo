@@ -25,11 +25,24 @@
 
         <button class="shadow-inset-center" id="boton-mascota">Seleccionar</button>
     </section>
+
     <section id="ver-mapa">
         <h1 class="title">La batalla del Fulbo! ⚽</h1>
-        <h2 class="subtitle">Recorre el mapa</h2>
+        <h2 class="subtitle">Recorre el mapa con tu personaje</h2>
         <canvas id="mapa"></canvas>
+        <button class="movimiento" onmousedown
+        ="moverArriba()" onmouseup="detenerMovimiento()">⬆</button>
+        <div>
+            <button class="movimiento" onmousedown
+            ="moverIzquierda()" onmouseup="detenerMovimiento()">⬅</button>
+            <button class="movimiento" onmousedown
+            ="moverDerecha()" onmouseup="detenerMovimiento()">➡</button>
+        </div>
+        <button class="movimiento" onmousedown
+        ="moverAbajo()" onmouseup="detenerMovimiento()">⬇</button>
+        
     </section>
+
     <section id="seleccionar-ataque">
         <h1 class="title">La batalla del Fulbo! ⚽</h1>
 

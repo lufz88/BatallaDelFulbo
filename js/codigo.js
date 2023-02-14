@@ -19,11 +19,17 @@ const mensajeAtaqueEnemigo = document.getElementById("ataques-del-enemigo");
 const contenedorTarjeta = document.getElementById("contenedor-tarjeta");
 const contenedorBotones = document.getElementById("contenedor-botones");
 
+<<<<<<< HEAD
 const sectionVerMapa = document.getElementById(`ver-mapa`);
 const mapa = document.getElementById(`mapa`);
 
+=======
+const seccionVermapa = document.getElementById("ver-mapa");
+const mapa = document.getElementById("mapa");
+>>>>>>> 3093a2712b20051bd01af9ffa0c3dc9c9ba9bd13
 
 let personajes = [];
+let personajesEnemigos = [];
 let mascotaAleatoria;
 let opcionPersonaje;
 let botonAtaquePersonaje;
@@ -34,6 +40,7 @@ let inputIvan;
 let inputMartin;
 let inputGonzalez;
 let mascotaJugador;
+let mascotaJugadorObjeto;
 let ataques = [];
 let ataquesEnemigo = [];
 let botones = [];
@@ -46,14 +53,50 @@ let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 100;
 let vidasEnemigo = 100;
+<<<<<<< HEAD
 let lienzo = mapa.getContext("2d");
+=======
+let lienzo = mapa.getContext("2d")
+let intervalo;
+let mapaBackground = new Image();
+mapaBackground.src = "../img/canchita.jpg"
+let alturaQueBuscamos;
+let anchoDelMapa = window.innerWidth - 50;
+
+const anchoMaximoDelMapa = 600;
+if (anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 50;
+}
+alturaQueBuscamos = anchoDelMapa * 600 / 800;
+
+mapa.width = anchoDelMapa;
+mapa.height = alturaQueBuscamos;
+>>>>>>> 3093a2712b20051bd01af9ffa0c3dc9c9ba9bd13
 
 class Personaje {
-    constructor(nombre, foto, vida,) {
+    constructor(nombre, foto, vida) {
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = []; 
+        this.ancho = 60;
+        this.alto = 60;
+        this.x = aleatorio(0, mapa.width - this.ancho);
+        this.y = aleatorio(0, mapa.height - this.alto);
+        this.mapaFoto = new Image();
+        this.mapaFoto.src = foto;
+        this.velocidadX = 0;
+        this.velocidadY = 0;
+    }
+
+    pintarPersonaje() {
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x,
+            this.y,
+            this.ancho,
+            this.alto,
+        )
     }
 }
 
@@ -66,19 +109,30 @@ class Ataque {
     }
 }
 
-let Iaia = new Personaje("Iaia","./img/la-iaia.jpg", 3);
-let Seve = new Personaje("Seve","./img/seve.jpg", 3);
-let Chino = new Personaje("Chino","./img/el-chino.JPG", 3);
-let Ivan = new Personaje("Ivan","./img/ivan.jpg", 3);
-let Martin = new Personaje("Martin","./img/martin.jpg", 3);
-let Gonzalez = new Personaje("Gonzalez","./img/gonzalez.JPG", 3);
+let Iaia = new Personaje("Iaia","../img/la-iaia.png", 3);
+let Seve = new Personaje("Seve","../img/seve.png", 3);
+let Chino = new Personaje("Chino","../img/el-chino.png", 3);
+let Ivan = new Personaje("Ivan","../img/ivan.png", 3);
+let Martin = new Personaje("Martin","../img/martin.png", 3);
+let Gonzalez = new Personaje("Gonzalez","../img/gonzalez.png", 3);
+
+let IaiaEnemigo = new Personaje("Iaia","../img/la-iaia.png", 3);
+let SeveEnemigo = new Personaje("Seve","../img/seve.png", 3);
+let ChinoEnemigo = new Personaje("Chino","../img/el-chino.png", 3);
+let IvanEnemigo = new Personaje("Ivan","../img/ivan.png", 3);
+let MartinEnemigo = new Personaje("Martin","../img/martin.png", 3);
+let GonzalezEnemigo = new Personaje("Gonzalez","../img/gonzalez.png", 3);
 
 personajes.push(Iaia, Seve, Chino, Ivan, Martin, Gonzalez);
-
+personajesEnemigos.push(IaiaEnemigo, SeveEnemigo, ChinoEnemigo, IvanEnemigo, MartinEnemigo, GonzalezEnemigo)
 
 function iniciarJuego() {
     seccionAtaque.style.display = "none";
+<<<<<<< HEAD
     sectionVerMapa.style.display = "none";
+=======
+    seccionVermapa.style.display = "none";
+>>>>>>> 3093a2712b20051bd01af9ffa0c3dc9c9ba9bd13
 
     personajes.forEach((personaje) => {
         opcionPersonaje = `
@@ -109,12 +163,18 @@ function iniciarJuego() {
 //Funciones de seleccion de mascotas
 
 function seleccionarMascotaJugador() {
+<<<<<<< HEAD
     sectionVerMapa.style.display = "flex";
     let o
 
 
     // seccionAtaque.style.display = "flex";
     seccionMascota.style.display = "none";    
+=======
+    seccionMascota.style.display = "none";   
+        
+
+>>>>>>> 3093a2712b20051bd01af9ffa0c3dc9c9ba9bd13
     if (inputIaia.checked) {       
         spanMascotaJugador.innerHTML = inputIaia.id;
         mascotaJugador = inputIaia.id;
@@ -137,6 +197,9 @@ function seleccionarMascotaJugador() {
         alert("Selecciona tu mascota");
         reiniciarJuego();
     }
+
+    seccionVermapa.style.display = "flex";
+    iniciarMapa();
 
     let Narigazo = new Ataque(`Narigazo`, `boton1`, -15, ` dio alto narigazo, se restan 15 vidas.`);
     let EscribirCuento = new Ataque(`Escribir Cuento`, `boton2`, -10, ` escribió un cuento aburrido, se pierden 10 vidas leyéndolo.`);
@@ -173,7 +236,6 @@ function seleccionarMascotaJugador() {
     Gonzalez.ataques.push(Desmayo, DarLaRazón, ComentarPartido, FumarseUno, Anemia);
 
     extraerAtaques(mascotaJugador);
-    seleccionarMascotaEnemigo();
     
 }
 
@@ -220,8 +282,8 @@ function secuenciaAtaque(){
     })
 }
 
-function seleccionarMascotaEnemigo() {
-    mascotaAleatoria = personajes[aleatorio(0, (personajes.length - 1))].nombre;
+function seleccionarMascotaEnemigo(enemigo) {
+    mascotaAleatoria = enemigo.nombre;
     spanMascotaEnemigo.innerHTML = mascotaAleatoria;
     extraerAtaquesEnemigo(mascotaAleatoria);
     secuenciaAtaque();
@@ -286,4 +348,113 @@ function reiniciarJuego() {
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+
+function iniciarMapa() {
+    mascotaJugadorObjeto = obtenerObjetoMascota();
+    
+    intervalo = setInterval(pintarCanvas, 50)
+    
+    window.addEventListener("keydown", sePresionoUnaTecla);
+    window.addEventListener("keyup", detenerMovimiento);
+}
+
+function pintarCanvas() {
+
+    mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadX;
+    mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY;
+    lienzo.clearRect(0, 0, mapa.width, mapa.height);
+    lienzo.drawImage(
+        mapaBackground,
+        0,
+        0,
+        mapa.width,
+        mapa.height,
+    )
+    mascotaJugadorObjeto.pintarPersonaje();
+    personajesEnemigos.forEach(personaje => personaje.pintarPersonaje());
+    if (mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !== 0) {
+        personajesEnemigos.forEach(personaje => revisarColision(personaje));
+    }
+}
+
+function moverDerecha() {
+    mascotaJugadorObjeto.velocidadX = 5;
+    
+}
+function moverIzquierda() {
+    mascotaJugadorObjeto.velocidadX = -5;
+    
+}
+function moverArriba() {
+    mascotaJugadorObjeto.velocidadY = -5;
+}
+function moverAbajo() {
+    mascotaJugadorObjeto.velocidadY = 5;
+}
+
+function detenerMovimiento() {
+    
+    mascotaJugadorObjeto.velocidadX = 0;
+    mascotaJugadorObjeto.velocidadY = 0;
+}
+
+function sePresionoUnaTecla(event) {
+    switch (event.key) {
+        case "ArrowUp":
+            moverArriba();
+            break;
+        
+        case "ArrowDown":
+            moverAbajo();
+            break;
+        
+        case "ArrowLeft":
+            moverIzquierda();
+            break;
+        
+        case "ArrowRight":
+            moverDerecha();
+            break;
+
+        default:
+            break;
+    }
+}
+
+function obtenerObjetoMascota() {
+    for(let i = 0; i < personajes.length; i++) {
+        if (mascotaJugador === personajes[i].nombre) {
+            return personajes[i];
+        }
+    }
+}
+
+function revisarColision(enemigo) {
+    const arribaEnemigo = enemigo.y;
+    const abajoEnemigo = enemigo.y + enemigo.alto;
+    const derechaEnemigo = enemigo.x + enemigo.ancho;
+    const izquierdaEnemigo = enemigo.x;
+
+    const arribaMascota = mascotaJugadorObjeto.y;
+    const abajoMascota = mascotaJugadorObjeto.y + mascotaJugadorObjeto.alto;
+    const derechaMascota = mascotaJugadorObjeto.x + mascotaJugadorObjeto.ancho;
+    const izquierdaMascota = mascotaJugadorObjeto.x;
+    if(
+        abajoMascota < arribaEnemigo ||
+        arribaMascota > abajoEnemigo ||
+        derechaMascota < izquierdaEnemigo ||
+        izquierdaMascota > derechaEnemigo
+    ) {
+        return;
+    }
+
+    detenerMovimiento();
+    clearInterval(intervalo);
+    seccionAtaque.style.display = "flex";
+    seccionVermapa.style.display = "none";
+    seleccionarMascotaEnemigo(enemigo);
+    // alert(`Comienza la batalla con ${enemigo.nombre}`);
+}
+
 iniciarJuego();
