@@ -2,6 +2,7 @@ const seccionAtaque = document.getElementById("seleccionar-ataque");
 const seccionMascota = document.getElementById("seleccionar-mascota");
 const seccionReiniciar = document.getElementById("reiniciar");
 const botonMascotaJugador = document.getElementById("boton-mascota");
+const botonReiniciar = document.getElementById("boton-reiniciar");
 
 const spanMascotaJugador = document.getElementById("mascota-jugador");
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo");
@@ -49,7 +50,7 @@ let vidasEnemigo = 100;
 let lienzo = mapa.getContext("2d")
 let intervalo;
 let mapaBackground = new Image();
-mapaBackground.src = "../img/canchita.jpg"
+mapaBackground.src = "./img/canchita.jpg"
 let alturaQueBuscamos;
 let anchoDelMapa = window.innerWidth - 50;
 
@@ -98,19 +99,19 @@ class Ataque {
     }
 }
 
-let Iaia = new Personaje("Iaia","../img/la-iaia.png", 3);
-let Seve = new Personaje("Seve","../img/seve.png", 3);
-let Chino = new Personaje("Chino","../img/el-chino.png", 3);
-let Ivan = new Personaje("Ivan","../img/ivan.png", 3);
-let Martin = new Personaje("Martin","../img/martin.png", 3);
-let Gonzalez = new Personaje("Gonzalez","../img/gonzalez.png", 3);
+let Iaia = new Personaje("Iaia","./img/la-iaia.png", 3);
+let Seve = new Personaje("Seve","./img/seve.png", 3);
+let Chino = new Personaje("Chino","./img/el-chino.png", 3);
+let Ivan = new Personaje("Ivan","./img/ivan.png", 3);
+let Martin = new Personaje("Martin","./img/martin.png", 3);
+let Gonzalez = new Personaje("Gonzalez","./img/gonzalez.png", 3);
 
-let IaiaEnemigo = new Personaje("Iaia","../img/la-iaia.png", 3);
-let SeveEnemigo = new Personaje("Seve","../img/seve.png", 3);
-let ChinoEnemigo = new Personaje("Chino","../img/el-chino.png", 3);
-let IvanEnemigo = new Personaje("Ivan","../img/ivan.png", 3);
-let MartinEnemigo = new Personaje("Martin","../img/martin.png", 3);
-let GonzalezEnemigo = new Personaje("Gonzalez","../img/gonzalez.png", 3);
+let IaiaEnemigo = new Personaje("Iaia","./img/la-iaia.png", 3);
+let SeveEnemigo = new Personaje("Seve","./img/seve.png", 3);
+let ChinoEnemigo = new Personaje("Chino","./img/el-chino.png", 3);
+let IvanEnemigo = new Personaje("Ivan","./img/ivan.png", 3);
+let MartinEnemigo = new Personaje("Martin","./img/martin.png", 3);
+let GonzalezEnemigo = new Personaje("Gonzalez","./img/gonzalez.png", 3);
 
 personajes.push(Iaia, Seve, Chino, Ivan, Martin, Gonzalez);
 personajesEnemigos.push(IaiaEnemigo, SeveEnemigo, ChinoEnemigo, IvanEnemigo, MartinEnemigo, GonzalezEnemigo)
@@ -149,6 +150,7 @@ function iniciarJuego() {
 
 function seleccionarMascotaJugador() {
     seccionMascota.style.display = "none";
+    
     if (inputIaia.checked) {       
         spanMascotaJugador.innerHTML = inputIaia.id;
         mascotaJugador = inputIaia.id;
