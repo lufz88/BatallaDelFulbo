@@ -2,7 +2,6 @@ const seccionAtaque = document.getElementById("seleccionar-ataque");
 const seccionMascota = document.getElementById("seleccionar-mascota");
 const seccionReiniciar = document.getElementById("reiniciar");
 const botonMascotaJugador = document.getElementById("boton-mascota");
-const botonReiniciar = document.getElementById("boton-reiniciar");
 
 const spanMascotaJugador = document.getElementById("mascota-jugador");
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo");
@@ -19,14 +18,8 @@ const mensajeAtaqueEnemigo = document.getElementById("ataques-del-enemigo");
 const contenedorTarjeta = document.getElementById("contenedor-tarjeta");
 const contenedorBotones = document.getElementById("contenedor-botones");
 
-<<<<<<< HEAD
-const sectionVerMapa = document.getElementById(`ver-mapa`);
-const mapa = document.getElementById(`mapa`);
-
-=======
 const seccionVermapa = document.getElementById("ver-mapa");
 const mapa = document.getElementById("mapa");
->>>>>>> 3093a2712b20051bd01af9ffa0c3dc9c9ba9bd13
 
 let personajes = [];
 let personajesEnemigos = [];
@@ -53,9 +46,6 @@ let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 100;
 let vidasEnemigo = 100;
-<<<<<<< HEAD
-let lienzo = mapa.getContext("2d");
-=======
 let lienzo = mapa.getContext("2d")
 let intervalo;
 let mapaBackground = new Image();
@@ -71,7 +61,6 @@ alturaQueBuscamos = anchoDelMapa * 600 / 800;
 
 mapa.width = anchoDelMapa;
 mapa.height = alturaQueBuscamos;
->>>>>>> 3093a2712b20051bd01af9ffa0c3dc9c9ba9bd13
 
 class Personaje {
     constructor(nombre, foto, vida) {
@@ -128,11 +117,7 @@ personajesEnemigos.push(IaiaEnemigo, SeveEnemigo, ChinoEnemigo, IvanEnemigo, Mar
 
 function iniciarJuego() {
     seccionAtaque.style.display = "none";
-<<<<<<< HEAD
-    sectionVerMapa.style.display = "none";
-=======
     seccionVermapa.style.display = "none";
->>>>>>> 3093a2712b20051bd01af9ffa0c3dc9c9ba9bd13
 
     personajes.forEach((personaje) => {
         opcionPersonaje = `
@@ -163,18 +148,7 @@ function iniciarJuego() {
 //Funciones de seleccion de mascotas
 
 function seleccionarMascotaJugador() {
-<<<<<<< HEAD
-    sectionVerMapa.style.display = "flex";
-    let o
-
-
-    // seccionAtaque.style.display = "flex";
-    seccionMascota.style.display = "none";    
-=======
-    seccionMascota.style.display = "none";   
-        
-
->>>>>>> 3093a2712b20051bd01af9ffa0c3dc9c9ba9bd13
+    seccionMascota.style.display = "none";
     if (inputIaia.checked) {       
         spanMascotaJugador.innerHTML = inputIaia.id;
         mascotaJugador = inputIaia.id;
