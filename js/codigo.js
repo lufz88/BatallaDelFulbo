@@ -23,6 +23,7 @@ const seccionVermapa = document.getElementById("ver-mapa");
 const mapa = document.getElementById("mapa");
 
 let personajes = [];
+let personajesEnemigos = [];
 let mascotaAleatoria;
 let opcionPersonaje;
 let botonAtaquePersonaje;
@@ -33,6 +34,7 @@ let inputIvan;
 let inputMartin;
 let inputGonzalez;
 let mascotaJugador;
+let mascotaJugadorObjeto;
 let ataques = [];
 let ataquesEnemigo = [];
 let botones = [];
@@ -47,21 +49,33 @@ let vidasJugador = 100;
 let vidasEnemigo = 100;
 let lienzo = mapa.getContext("2d")
 let intervalo;
+let mapaBackground = new Image();
+mapaBackground.src = "../img/canchita.jpg"
 
 class Personaje {
-    constructor(nombre, foto, vida,) {
+    constructor(nombre, foto, vida, x = 200, y = 10) {
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = []; 
-        this.x = 20;
-        this.y = 30;
+        this.x = x;
+        this.y = y;
         this.ancho = 60;
         this.alto = 60;
         this.mapaFoto = new Image();
         this.mapaFoto.src = foto;
         this.velocidadX = 0;
         this.velocidadY = 0;
+    }
+
+    pintarPersonaje() {
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x,
+            this.y,
+            this.ancho,
+            this.alto,
+        )
     }
 }
 
@@ -81,8 +95,15 @@ let Ivan = new Personaje("Ivan","../img/ivan.png", 3);
 let Martin = new Personaje("Martin","../img/martin.png", 3);
 let Gonzalez = new Personaje("Gonzalez","../img/gonzalez.png", 3);
 
-personajes.push(Iaia, Seve, Chino, Ivan, Martin, Gonzalez);
+let IaiaEnemigo = new Personaje("Iaia","../img/la-iaia.png", 3, 10, 120);
+let SeveEnemigo = new Personaje("Seve","../img/seve.png", 3, 380, 120);
+let ChinoEnemigo = new Personaje("Chino","../img/el-chino.png", 3, 380, 220);
+let IvanEnemigo = new Personaje("Ivan","../img/ivan.png", 3, 10, 220);
+let MartinEnemigo = new Personaje("Martin","../img/martin.png", 3, 380, 10);
+let GonzalezEnemigo = new Personaje("Gonzalez","../img/gonzalez.png", 3, 200, 220);
 
+personajes.push(Iaia, Seve, Chino, Ivan, Martin, Gonzalez);
+personajesEnemigos.push(IaiaEnemigo, SeveEnemigo, ChinoEnemigo, IvanEnemigo, MartinEnemigo, GonzalezEnemigo)
 
 function iniciarJuego() {
     seccionAtaque.style.display = "none";
@@ -118,8 +139,7 @@ function iniciarJuego() {
 
 function seleccionarMascotaJugador() {
     seccionMascota.style.display = "none";   
-    seccionVermapa.style.display = "flex";
-    iniciarMapa();
+    
     // seccionAtaque.style.display = "flex";
      
     
@@ -146,6 +166,9 @@ function seleccionarMascotaJugador() {
         alert("Selecciona tu mascota");
         reiniciarJuego();
     }
+
+    seccionVermapa.style.display = "flex";
+    iniciarMapa();
 
     let Narigazo = new Ataque(`Narigazo`, `boton1`, -15, ` dio alto narigazo, se restan 15 vidas.`);
     let EscribirCuento = new Ataque(`Escribir Cuento`, `boton2`, -10, ` escribió un cuento aburrido, se pierden 10 vidas leyéndolo.`);
@@ -298,43 +321,50 @@ function aleatorio(min, max) {
 
 
 function iniciarMapa() {
-    intervalo = setInterval(pintarPersonaje, 50)
+    mascotaJugadorObjeto = obtenerObjetoMascota();
+    mapa.width = 450;
+    mapa.height = 300;
+    intervalo = setInterval(pintarCanvas, 50)
     
     window.addEventListener("keydown", sePresionoUnaTecla);
     window.addEventListener("keyup", detenerMovimiento);
 }
 
-function pintarPersonaje() {
-    Iaia.x = Iaia.x + Iaia.velocidadX;
-    Iaia.y = Iaia.y + Iaia.velocidadY;
+function pintarCanvas() {
+
+    mascotaJugadorObjeto.x = mascotaJugadorObjeto.x + mascotaJugadorObjeto.velocidadX;
+    mascotaJugadorObjeto.y = mascotaJugadorObjeto.y + mascotaJugadorObjeto.velocidadY;
     lienzo.clearRect(0, 0, mapa.width, mapa.height);
     lienzo.drawImage(
-        Iaia.mapaFoto,
-        Iaia.x,
-        Iaia.y,
-        Iaia.ancho,
-        Iaia.alto,
+        mapaBackground,
+        0,
+        0,
+        mapa.width,
+        mapa.height,
     )
+    mascotaJugadorObjeto.pintarPersonaje();
+    personajesEnemigos.forEach(personaje => personaje.pintarPersonaje());
 }
 
 function moverDerecha() {
-    Iaia.velocidadX = 5;
+    mascotaJugadorObjeto.velocidadX = 5;
     
 }
 function moverIzquierda() {
-    Iaia.velocidadX = -5;
+    mascotaJugadorObjeto.velocidadX = -5;
     
 }
 function moverArriba() {
-    Iaia.velocidadY = -5;
+    mascotaJugadorObjeto.velocidadY = -5;
 }
 function moverAbajo() {
-    Iaia.velocidadY = 5;
+    mascotaJugadorObjeto.velocidadY = 5;
 }
 
 function detenerMovimiento() {
-    Iaia.velocidadX = 0;
-    Iaia.velocidadY = 0;
+    
+    mascotaJugadorObjeto.velocidadX = 0;
+    mascotaJugadorObjeto.velocidadY = 0;
 }
 
 function sePresionoUnaTecla(event) {
@@ -357,6 +387,14 @@ function sePresionoUnaTecla(event) {
 
         default:
             break;
+    }
+}
+
+function obtenerObjetoMascota() {
+    for(let i = 0; i < personajes.length; i++) {
+        if (mascotaJugador === personajes[i].nombre) {
+            return personajes[i];
+        }
     }
 }
 
