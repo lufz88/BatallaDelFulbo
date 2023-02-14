@@ -51,17 +51,28 @@ let lienzo = mapa.getContext("2d")
 let intervalo;
 let mapaBackground = new Image();
 mapaBackground.src = "../img/canchita.jpg"
+let alturaQueBuscamos;
+let anchoDelMapa = window.innerWidth - 50;
+
+const anchoMaximoDelMapa = 600;
+if (anchoDelMapa > anchoMaximoDelMapa) {
+    anchoDelMapa = anchoMaximoDelMapa - 50;
+}
+alturaQueBuscamos = anchoDelMapa * 600 / 800;
+
+mapa.width = anchoDelMapa;
+mapa.height = alturaQueBuscamos;
 
 class Personaje {
-    constructor(nombre, foto, vida, x = 200, y = 10) {
+    constructor(nombre, foto, vida) {
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
         this.ataques = []; 
-        this.x = x;
-        this.y = y;
         this.ancho = 60;
         this.alto = 60;
+        this.x = aleatorio(0, mapa.width - this.ancho);
+        this.y = aleatorio(0, mapa.height - this.alto);
         this.mapaFoto = new Image();
         this.mapaFoto.src = foto;
         this.velocidadX = 0;
@@ -95,12 +106,12 @@ let Ivan = new Personaje("Ivan","../img/ivan.png", 3);
 let Martin = new Personaje("Martin","../img/martin.png", 3);
 let Gonzalez = new Personaje("Gonzalez","../img/gonzalez.png", 3);
 
-let IaiaEnemigo = new Personaje("Iaia","../img/la-iaia.png", 3, 10, 120);
-let SeveEnemigo = new Personaje("Seve","../img/seve.png", 3, 380, 120);
-let ChinoEnemigo = new Personaje("Chino","../img/el-chino.png", 3, 380, 220);
-let IvanEnemigo = new Personaje("Ivan","../img/ivan.png", 3, 10, 220);
-let MartinEnemigo = new Personaje("Martin","../img/martin.png", 3, 380, 10);
-let GonzalezEnemigo = new Personaje("Gonzalez","../img/gonzalez.png", 3, 200, 220);
+let IaiaEnemigo = new Personaje("Iaia","../img/la-iaia.png", 3);
+let SeveEnemigo = new Personaje("Seve","../img/seve.png", 3);
+let ChinoEnemigo = new Personaje("Chino","../img/el-chino.png", 3);
+let IvanEnemigo = new Personaje("Ivan","../img/ivan.png", 3);
+let MartinEnemigo = new Personaje("Martin","../img/martin.png", 3);
+let GonzalezEnemigo = new Personaje("Gonzalez","../img/gonzalez.png", 3);
 
 personajes.push(Iaia, Seve, Chino, Ivan, Martin, Gonzalez);
 personajesEnemigos.push(IaiaEnemigo, SeveEnemigo, ChinoEnemigo, IvanEnemigo, MartinEnemigo, GonzalezEnemigo)
@@ -139,10 +150,7 @@ function iniciarJuego() {
 
 function seleccionarMascotaJugador() {
     seccionMascota.style.display = "none";   
-    
-    // seccionAtaque.style.display = "flex";
-     
-    
+        
 
     if (inputIaia.checked) {       
         spanMascotaJugador.innerHTML = inputIaia.id;
@@ -205,7 +213,6 @@ function seleccionarMascotaJugador() {
     Gonzalez.ataques.push(Desmayo, DarLaRazón, ComentarPartido, FumarseUno, Anemia);
 
     extraerAtaques(mascotaJugador);
-    seleccionarMascotaEnemigo();
     
 }
 
@@ -252,8 +259,8 @@ function secuenciaAtaque(){
     })
 }
 
-function seleccionarMascotaEnemigo() {
-    mascotaAleatoria = personajes[aleatorio(0, (personajes.length - 1))].nombre;
+function seleccionarMascotaEnemigo(enemigo) {
+    mascotaAleatoria = enemigo.nombre;
     spanMascotaEnemigo.innerHTML = mascotaAleatoria;
     extraerAtaquesEnemigo(mascotaAleatoria);
     secuenciaAtaque();
@@ -322,8 +329,7 @@ function aleatorio(min, max) {
 
 function iniciarMapa() {
     mascotaJugadorObjeto = obtenerObjetoMascota();
-    mapa.width = 450;
-    mapa.height = 300;
+    
     intervalo = setInterval(pintarCanvas, 50)
     
     window.addEventListener("keydown", sePresionoUnaTecla);
@@ -421,7 +427,11 @@ function revisarColision(enemigo) {
     }
 
     detenerMovimiento();
-    alert("Hay colisión");
+    clearInterval(intervalo);
+    seccionAtaque.style.display = "flex";
+    seccionVermapa.style.display = "none";
+    seleccionarMascotaEnemigo(enemigo);
+    // alert(`Comienza la batalla con ${enemigo.nombre}`);
 }
 
 iniciarJuego();
