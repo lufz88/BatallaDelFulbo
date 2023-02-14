@@ -19,6 +19,9 @@ const mensajeAtaqueEnemigo = document.getElementById("ataques-del-enemigo");
 const contenedorTarjeta = document.getElementById("contenedor-tarjeta");
 const contenedorBotones = document.getElementById("contenedor-botones");
 
+const sectionVerMapa = document.getElementById(`ver-mapa`);
+const mapa = document.getElementById(`mapa`);
+
 
 let personajes = [];
 let mascotaAleatoria;
@@ -43,6 +46,7 @@ let ataqueJugador;
 let ataqueEnemigo;
 let vidasJugador = 100;
 let vidasEnemigo = 100;
+let lienzo = mapa.getContext("2d");
 
 class Personaje {
     constructor(nombre, foto, vida,) {
@@ -74,6 +78,7 @@ personajes.push(Iaia, Seve, Chino, Ivan, Martin, Gonzalez);
 
 function iniciarJuego() {
     seccionAtaque.style.display = "none";
+    sectionVerMapa.style.display = "none";
 
     personajes.forEach((personaje) => {
         opcionPersonaje = `
@@ -104,7 +109,11 @@ function iniciarJuego() {
 //Funciones de seleccion de mascotas
 
 function seleccionarMascotaJugador() {
-    seccionAtaque.style.display = "flex";
+    sectionVerMapa.style.display = "flex";
+    let o
+
+
+    // seccionAtaque.style.display = "flex";
     seccionMascota.style.display = "none";    
     if (inputIaia.checked) {       
         spanMascotaJugador.innerHTML = inputIaia.id;
