@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lufz88/BatallaDelFulbo/issues"
   },
-  "homepage": "https://github.com/lufz88/BatallaDelFulbo#readme"
+  "homepage": "https://github.com/lufz88/BatallaDelFulbo#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
