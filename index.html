@@ -31,15 +31,19 @@
         <h2 class="subtitle">Recorre el mapa con tu personaje</h2>
         <canvas id="mapa"></canvas>
         <button class="movimiento" onmousedown
-        ="moverArriba()" onmouseup="detenerMovimiento()">⬆</button>
+        ="moverArriba()" onmouseup="detenerMovimiento()" ontouchstart
+        ="moverArriba()" ontouchend="detenerMovimiento()">⬆</button>
         <div>
             <button class="movimiento" onmousedown
-            ="moverIzquierda()" onmouseup="detenerMovimiento()">⬅</button>
+            ="moverIzquierda()" onmouseup="detenerMovimiento()" ontouchstart
+            ="moverArriba()" ontouchend="detenerMovimiento()">⬅</button>
             <button class="movimiento" onmousedown
-            ="moverDerecha()" onmouseup="detenerMovimiento()">➡</button>
+            ="moverDerecha()" onmouseup="detenerMovimiento()" ontouchstart
+            ="moverArriba()" ontouchend="detenerMovimiento()">➡</button>
         </div>
         <button class="movimiento" onmousedown
-        ="moverAbajo()" onmouseup="detenerMovimiento()">⬇</button>
+        ="moverAbajo()" onmouseup="detenerMovimiento()" ontouchstart
+        ="moverArriba()" ontouchend="detenerMovimiento()">⬇</button>
         
     </section>
 
