@@ -22,6 +22,7 @@ const contenedorBotones = document.getElementById("contenedor-botones");
 const seccionVermapa = document.getElementById("ver-mapa");
 const mapa = document.getElementById("mapa");
 
+let jugadorid = null;
 let personajes = [];
 let personajesEnemigos = [];
 let mascotaAleatoria;
@@ -156,6 +157,7 @@ function unirseAlJuego() {
                 res.text()
                     .then(function(respuesta) {
                         console.log(respuesta)
+                        jugadorid = respuesta;
                     })
             }
         })
@@ -188,6 +190,8 @@ function seleccionarMascotaJugador() {
         alert("Selecciona tu mascota");
         reiniciarJuego();
     }
+
+    seleccionarPersonaje(mascotaJugador);
 
     seccionVermapa.style.display = "flex";
     iniciarMapa();
@@ -228,6 +232,18 @@ function seleccionarMascotaJugador() {
 
     extraerAtaques(mascotaJugador);
     
+}
+
+function seleccionarPersonaje(mascotaJugador) {
+    fetch(`http://localhost:8080/personaje/${jugadorid}`, {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            personaje: mascotaJugador
+        }) 
+    }) 
 }
 
 function extraerAtaques(mascotaJugador) {
