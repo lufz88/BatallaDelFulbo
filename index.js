@@ -53,9 +53,9 @@ app.post("/personaje/:jugadorId", (req, res) => {
 })
 
 app.post("/personaje/:jugadorId/posicion", (req, res) => {
-    const jugadorId = req.params.jugadorId || "";
-    const x = req.body.x || 0;
-    const y = req.body.y || 0;
+    const jugadorId = req.params.jugadorId || ""
+    const x = req.body.x || 0
+    const y = req.body.y || 0
 
     const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id);
 
@@ -63,7 +63,11 @@ app.post("/personaje/:jugadorId/posicion", (req, res) => {
         jugadores[jugadorIndex].actualizarPosicion(x, y);
     }
 
-    res.end();
+    const enemigos = jugadores.filter((jugador) => jugadorId !== jugador.id)
+
+    res.send({
+        enemigos
+    });
 })
 
 app.listen(8080, () => {

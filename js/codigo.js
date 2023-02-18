@@ -65,7 +65,8 @@ mapa.width = anchoDelMapa;
 mapa.height = alturaQueBuscamos;
 
 class Personaje {
-    constructor(nombre, foto, vida) {
+    constructor(nombre, foto, vida, id = null) {
+        this.id = id;
         this.nombre = nombre;
         this.foto = foto;
         this.vida = vida;
@@ -107,15 +108,8 @@ let Ivan = new Personaje("Ivan","./img/ivan.png", 3);
 let Martin = new Personaje("Martin","./img/martin.png", 3);
 let Gonzalez = new Personaje("Gonzalez","./img/gonzalez.png", 3);
 
-let IaiaEnemigo = new Personaje("Iaia","./img/la-iaia.png", 3);
-let SeveEnemigo = new Personaje("Seve","./img/seve.png", 3);
-let ChinoEnemigo = new Personaje("Chino","./img/el-chino.png", 3);
-let IvanEnemigo = new Personaje("Ivan","./img/ivan.png", 3);
-let MartinEnemigo = new Personaje("Martin","./img/martin.png", 3);
-let GonzalezEnemigo = new Personaje("Gonzalez","./img/gonzalez.png", 3);
 
 personajes.push(Iaia, Seve, Chino, Ivan, Martin, Gonzalez);
-personajesEnemigos.push(IaiaEnemigo, SeveEnemigo, ChinoEnemigo, IvanEnemigo, MartinEnemigo, GonzalezEnemigo)
 
 function iniciarJuego() {
     seccionAtaque.style.display = "none";
@@ -381,14 +375,13 @@ function pintarCanvas() {
 
     enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y);
 
-    personajesEnemigos.forEach(personaje => personaje.pintarPersonaje());
     if (mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !== 0) {
         personajesEnemigos.forEach(personaje => revisarColision(personaje));
     }
 }
 
 function enviarPosicion(x, y) {
-    fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+    fetch(`http://localhost:8080/personaje/${jugadorId}/posicion`, {
         method: "post",
         headers: {
             "Content-type": "application/json"
@@ -398,6 +391,36 @@ function enviarPosicion(x, y) {
             y,
         })
 
+    })
+    .then(function(res) {
+        if(res.ok) {
+            res.json()
+                .then(function({enemigos}) {
+                    console.log(enemigos)
+                    enemigos.forEach(function(enemigo) {
+                        let personajeEnemigo = null;
+                        const personajeNombre = enemigo.personaje.nombre || "";
+                        if(personajeNombre === "Iaia") {
+                            personajeEnemigo = new Personaje("Iaia","./img/la-iaia.png", 3);
+                        } else if(personajeNombre === "Seve") {
+                            personajeEnemigo = new Personaje("Seve","./img/seve.png", 3);
+                        } else if(personajeNombre === "Chino") {
+                            personajeEnemigo = new Personaje("Chino","./img/el-chino.png", 3);
+                        } else if(personajeNombre === "Ivan") {
+                            personajeEnemigo = new Personaje("Ivan","./img/ivan.png", 3);
+                        } else if(personajeNombre === "Martin") {
+                            personajeEnemigo = new Personaje("Martin","./img/martin.png", 3);
+                        } else if(personajeNombre === "Gonzalez") {
+                            personajeEnemigo = new Personaje("Gonzalez","./img/gonzalez.png", 3);
+                        }
+                        personajeEnemigo.x = enemigo.x;
+                        personajeEnemigo.y = enemigo.y;
+
+                        personajeEnemigo.pintarPersonaje();
+                    })
+                    
+                })
+        }
     })
 }
 
