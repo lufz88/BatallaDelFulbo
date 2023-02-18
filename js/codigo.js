@@ -22,7 +22,7 @@ const contenedorBotones = document.getElementById("contenedor-botones");
 const seccionVermapa = document.getElementById("ver-mapa");
 const mapa = document.getElementById("mapa");
 
-let jugadorid = null;
+let jugadorId = null;
 let personajes = [];
 let personajesEnemigos = [];
 let mascotaAleatoria;
@@ -152,12 +152,11 @@ function iniciarJuego() {
 function unirseAlJuego() {
     fetch("http://localhost:8080/unirse")
         .then(function(res) {
-            console.log(res)
             if (res.ok) {
                 res.text()
                     .then(function(respuesta) {
                         console.log(respuesta)
-                        jugadorid = respuesta;
+                        jugadorId = respuesta
                     })
             }
         })
@@ -235,7 +234,7 @@ function seleccionarMascotaJugador() {
 }
 
 function seleccionarPersonaje(mascotaJugador) {
-    fetch(`http://localhost:8080/personaje/${jugadorid}`, {
+    fetch(`http://localhost:8080/personaje/${jugadorId}`, {
         method: "post",
         headers: {
             "Content-Type": "application/json"
@@ -379,10 +378,27 @@ function pintarCanvas() {
         mapa.height,
     )
     mascotaJugadorObjeto.pintarPersonaje();
+
+    enviarPosicion(mascotaJugadorObjeto.x, mascotaJugadorObjeto.y);
+
     personajesEnemigos.forEach(personaje => personaje.pintarPersonaje());
     if (mascotaJugadorObjeto.velocidadX !== 0 || mascotaJugadorObjeto.velocidadY !== 0) {
         personajesEnemigos.forEach(personaje => revisarColision(personaje));
     }
+}
+
+function enviarPosicion(x, y) {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/posicion`, {
+        method: "post",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+            x,
+            y,
+        })
+
+    })
 }
 
 function moverDerecha() {
